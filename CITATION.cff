@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: ODDS
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Kevin
+    family-names: Ducharlet
+    email: kevin.ducharlet@berger-levrault.com
+    affiliation: Carl Berger-Levrault
+    orcid: 'https://orcid.org/0000-0003-0053-8874'
+repository-code: 'https://github.com/kyducharlet/odds'
+license: GPL-3.0
