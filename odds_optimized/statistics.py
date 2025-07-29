@@ -227,23 +227,24 @@ class DyCF(BaseDetector):
     d: int
         the degree of polynomials, usually set between 2 and 8
     incr_opt: str, optional
-        can be either "inverse" to inverse the moments matrix each iteration or "sherman" to use the Sherman-Morrison formula (default is "inv")
+        can be either "inverse" to inverse the moments matrix each iteration or "sherman" to use the Sherman-Morrison formula or "woodbury" to use the Woodbury matrix identity (default is "inverse")
     polynomial_basis: str, optional
-        polynomial basis used to compute moment matrix, either "monomials", "chebyshev_t_1", "chebyshev_t_2", "chebyshev_u" or "legendre",
-        varying this parameter can bring stability to the score in some cases (default is "monomials")
+        polynomial basis used to compute moment matrix, either "optimized_monomials", "monomials", "chebyshev_t_1_matrix", "chebyshev_t_1", "chebyshev_t_2", "chebyshev_u" or "legendre",
+        varying this parameter can bring stability to the score in some cases (default is "optimized_monomials")
     regularization: str, optional
         one of "vu" (score divided by d^{3p/2}), "vu_C" (score divided by d^{3p/2}/C), "comb" (score divided by comb(p+d, d)) or "none" (no regularization), "none" is used for cf vs mkde comparison (default is "vu_C")
     C: float, optional
         define a threshold on the score when used with regularization="vu_C", usually C<=1 (default is 1)
     inv: str, optional
-        inversion method, one of "inv" for classical matrix inversion or "pinv" for Moore-Penrose pseudo-inversion (default is "pinv")
+        inversion method, one of "inv" for classical matrix inversion or "pinv" for Moore-Penrose pseudo-inversion
+        or "pd_inv" to solve a system with M assumed positive definite or "fpd_inv" for matrix inversion using Cholesky decomposition in LAPACK (default is "pinv")
 
     Methods
     -------
     See BaseDetector methods
     """
 
-    def __init__(self, d: int, incr_opt: str = "inverse", polynomial_basis: str = "monomials", regularization: str = "vu_C", C: float = 1, inv: str = "pinv"):
+    def __init__(self, d: int, incr_opt: str = "inverse", polynomial_basis: str = "optimized_monomials", regularization: str = "vu_C", C: float = 1, inv: str = "pinv"):
         self.N = 0  # number of points integrated in the moments matrix
         self.C = C
         self.p = None
