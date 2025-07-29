@@ -36,8 +36,11 @@ pip install -e .
 or install from git:
 
 ```shell
-pip install git+https://github.com/kyducharlet/odds.git
+pip install git+https://github.com/fgrivet/odds_optimized.git
 ```
+
+# Possibly outdated instructions
+The following instructions may be outdated, please refer to the [examples](examples/) folder for up-to-date information.
 
 ## How to retrieve the experimental results presented in our article
 
